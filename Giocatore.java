@@ -1,19 +1,23 @@
 package giocanumeri;
-
 public class Giocatore extends Thread {
 
     String nome;
     int punteggio;
     String parola;
 
+    /**
+     * Crea un giocatore
+     */
     public Giocatore(String nome, int punteggio) {
         this.nome = nome;
         this.punteggio = punteggio;
     }
 
+
     void gioca() {
+
         int numero = 19;
-        String parola = "Buongiorno";
+        parola = "Buongiorno";
 
         for (int i = 0; i < numero; i++) {
             System.out.println("Giocatore " + nome + ": " + i);
@@ -21,21 +25,28 @@ public class Giocatore extends Thread {
             try {
                 sleep(2000);
             } catch (InterruptedException e) {
-                System.err.println("Errore nella transizione running-sleeping");
+                System.err.println(
+                    "Errore durante la sospensione del thread"
+                );
             }
         }
-
-        Thread.currentThread().yield();
 
         punteggio = 10;
     }
 
+
     void comunica() {
-        System.out.println("Giocatore " + nome + " " + punteggio
-                + " ha scelto la parola: " + parola);
+        System.out.println(
+            "Giocatore " + nome
+            + " - punteggio: " + punteggio
+            + " - parola scelta: " + parola
+        );
     }
+
 
     @Override
     public void run() {
+        gioca();
+        comunica();
     }
 }
