@@ -20,6 +20,7 @@ public class GiocaNumeri {
 
         try {
             g1.join();
+            g2.join();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
